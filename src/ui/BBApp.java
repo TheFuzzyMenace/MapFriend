@@ -10,7 +10,7 @@ import utility.Validator;
 /**
  * A black book rating app. Now using Java API data structures.
  *
- * @author 55jphillip
+ * @author Jeremiah E Zellers
  */
 public class BBApp {
 
@@ -57,15 +57,36 @@ public class BBApp {
             } else if (choice.equals("rating")) {
                 Collections.sort(list);
             } else if (choice.equals("search")) {
-                ;
+                String name = Validator.getLine(sc, "Who would you like to find: ");
+                Friend match = null;
+
+                for (Friend f : list) {
+                    if (f.getName().equalsIgnoreCase(name)) {
+                        match = f;
+                        break;
+                    }
+                }
+                if (match != null) {
+                    System.out.println("Match found: " + match.toString());
+                } else {
+                    System.out.println("Match Not Found.");
+                }
             } else if (choice.equals("range")) {
+                int low = Validator.getInt(sc, "Enter low end rating: ");
+                int high = Validator.getInt(sc, "Enter High End Rating: ");
+                        for(Friend f : list){
+                            if(f.getRating() >= low && f.getRating() <= high){
+                                System.out.println(f.toString());
+                            }
+                            
+                        }
                 ;
             }
         }
     }
 
     public void menu() {
-        System.out.println("\nJohn's Black Book");
+        System.out.println("\nJeremiah's Black Book");
         System.out.println("Add - add a new friend");
         System.out.println("Remove - remove a friend");
         System.out.println("List - display list of friends");
